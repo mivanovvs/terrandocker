@@ -22,7 +22,9 @@ Spin up new nodes for  k8s cluster
 Run bash script and define working dir with EGP repos
 For example, ~/work
 
-``bash terraform_up_new_cluster.sh ~/work``
+``bash terraform.sh init``
+``bash terraform.sh plan``
+``bash terraform.sh apply``
 
 TODO
 --------
