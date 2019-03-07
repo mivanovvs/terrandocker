@@ -7,8 +7,8 @@ Pre-requisities
 
 Clone EGP repos to working dir(example ~/work)
 
-``git clone git@github.com:VidScale/egp-devops.git
-  git clone git@github.com:VidScale/egp-envs.git``
+``git clone git@github.com:VidScale/egp-devops.git``
+``git clone git@github.com:VidScale/egp-envs.git``
 
 Build docker
 -------------
@@ -23,7 +23,9 @@ Run bash script and define working dir with EGP repos
 For example, ~/work
 
 ``bash terraform.sh init``
+
 ``bash terraform.sh plan``
+
 ``bash terraform.sh apply``
 
 TODO
