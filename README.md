@@ -8,6 +8,7 @@ Pre-requisities
 Clone EGP repos to working dir(example ~/work)
 
 ``git clone git@github.com:VidScale/egp-devops.git``
+
 ``git clone git@github.com:VidScale/egp-envs.git``
 
 Build docker
