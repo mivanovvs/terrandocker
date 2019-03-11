@@ -10,6 +10,7 @@ RUN apt-get update \
        apt-utils \
        python-setuptools \
        python-pip \
+       openssh-client \
        software-properties-common \
        rsyslog systemd systemd-cron sudo \
     && rm -Rf /var/lib/apt/lists/* \
