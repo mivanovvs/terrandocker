@@ -12,7 +12,7 @@ RUN apk --update add sudo                                     && \
     pip install --upgrade pip cffi                            && \
     \
     \
-    pip install ansible                && \
+    pip install ansible==2.7.5                && \
     \
     \
     apk --update add wget unzip  && \
