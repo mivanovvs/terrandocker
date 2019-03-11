@@ -8,7 +8,7 @@ RUN apk --update add sudo                                     && \
     \
     apk --update add python3 py3-pip openssl ca-certificates    && \
     apk --update add --virtual build-dependencies \
-                python3-dev libffi-dev openssl-dev build-base  && \
+                python3-dev python-netaddr libffi-dev openssl-dev build-base  && \
     pip3 install --upgrade pip cffi                            && \
     \
     \
