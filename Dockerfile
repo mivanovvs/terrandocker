@@ -2,14 +2,14 @@ FROM ubuntu:16.04
 
 MAINTAINER Mike Ivanov mivanov@edgegravity.ericsson.com
 
-ENV pip_packages "ansible"
+ENV pip_packages "==ansible2.7.4"
 
 # Install dependencies.
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
        apt-utils \
-       python-setuptools \
-       python-pip \
+       python3-setuptools \
+       python3-pip \
        openssh-client \
        software-properties-common \
        rsyslog systemd systemd-cron sudo \
@@ -19,4 +19,4 @@ RUN apt-get update \
 RUN sed -i 's/^\($ModLoad imklog\)/#\1/' /etc/rsyslog.conf
 
 # Install Ansible via Pip.
-RUN pip install $pip_packages
+RUN pip3 install $pip_packages
