@@ -1,20 +1,20 @@
-FROM alpine:latest
+FROM ubuntu:latest
 
 MAINTAINER Mike Ivanov mivanov@edgegravity.ericsson.com
 
 
-RUN apk --update add sudo                                     && \
+RUN apt update && \
     \
     \
-    apk --update add openssh-client ansible python3 py3-pip openssl ca-certificates  && \
-    apk --update add --virtual build-dependencies \
+    apt install openssh-client ansible python3 py3-pip openssl ca-certificates  && \
+    apt-install build-dependencies \
                 python3-dev libffi-dev openssl-dev build-base  && \
     pip3 install --upgrade pip cffi                            && \
     \
+    pip3 install ansible==2.7.5  && \
     \
     \
-    \
-    apk --update add wget unzip  && \
+    apt install wget unzip  && \
     \
     \
     export VER="0.11.11" && wget https://releases.hashicorp.com/terraform/${VER}/terraform_${VER}_linux_amd64.zip && \
@@ -22,5 +22,5 @@ RUN apk --update add sudo                                     && \
     mv terraform /usr/local/bin/ &&\
     \
     \
-    apk del build-dependencies            && \
-    rm -rf /var/cache/apk/*
+    apt remove build-dependencies            && \
+    rm -rf /var/cache/apt/*
