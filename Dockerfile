@@ -6,13 +6,13 @@ MAINTAINER Mike Ivanov mivanov@edgegravity.ericsson.com
 RUN apk --update add sudo                                     && \
     \
     \
-    apk --update add python py-pip openssl ca-certificates    && \
+    apk --update add python3 py-pip3 openssl ca-certificates    && \
     apk --update add --virtual build-dependencies \
-                python-dev libffi-dev openssl-dev build-base  && \
-    pip install --upgrade pip cffi                            && \
+                python3-dev libffi-dev openssl-dev build-base  && \
+    pip3 install --upgrade pip cffi                            && \
     \
     \
-    pip install ansible==2.7.5                && \
+    pip3 install ansible==2.7.5                && \
     \
     \
     apk --update add wget unzip  && \
