@@ -1,26 +1,10 @@
-FROM ubuntu:latest
+FROM ubuntu:16.04
 
 MAINTAINER Mike Ivanov mivanov@edgegravity.ericsson.com
 
-
-RUN apt update && \
-    \
-    \
-    apt install openssh-client ansible python3 py3-pip openssl ca-certificates  && \
-    apt-install build-dependencies \
-                python3-dev libffi-dev openssl-dev build-base  && \
-    pip3 install --upgrade pip cffi                            && \
-    \
-    pip3 install ansible==2.7.5  && \
-    \
-    \
-    apt install wget unzip  && \
-    \
-    \
-    export VER="0.11.11" && wget https://releases.hashicorp.com/terraform/${VER}/terraform_${VER}_linux_amd64.zip && \
-    unzip terraform_${VER}_linux_amd64.zip && \
-    mv terraform /usr/local/bin/ &&\
-    \
-    \
-    apt remove build-dependencies            && \
-    rm -rf /var/cache/apt/*
+RUN apt-get update \
+  && apt-get install -y python3-pip python3-dev \
+  && cd /usr/local/bin \
+  && ln -s /usr/bin/python3 python \
+  && pip3 install --upgrade pip \
+  && pip3 install ansible==2.7.5 \
