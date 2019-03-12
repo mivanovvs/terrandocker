@@ -1,27 +1,21 @@
-FROM alpine:latest
+FROM ubuntu:16.04
 
 MAINTAINER Mike Ivanov mivanov@edgegravity.ericsson.com
 
+ENV pip_packages "ansible==2.7.5 netaddr jinja2>=2.9.6 pbr>=1.6 hvac"
 
-RUN apk --update add sudo \
-    \
-    \
-    && apk --update add python3 py3-pip openssl py-ipaddr ca-certificates \
-    && apk --update add --virtual build-dependencies python3-dev py3-netaddr libffi-dev openssl-dev build-base \
-    && pip3 install --upgrade pip cffi  \
-    \
-    \
-    && pip3 install ansible==2.7.5 netaddr pbr>=1.6 jinja2>=2.9.6 hvac \
-    && pip3 install netaddr  \
-    \
-    \
-    && apk --update add wget unzip \
-    \
-    \
-    && export VER="0.11.11" && wget https://releases.hashicorp.com/terraform/${VER}/terraform_${VER}_linux_amd64.zip \
-    && unzip terraform_${VER}_linux_amd64.zip \
-    && mv terraform /usr/local/bin/ \
-    \
-    \
-    && apk del build-dependencies \
-    && rm -rf /var/cache/apk/*
+# Install dependencies.
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+       apt-utils \
+       python-setuptools \
+       python-pip \
+       software-properties-common \
+       rsyslog systemd systemd-cron sudo \
+    && rm -Rf /var/lib/apt/lists/* \
+    && rm -Rf /usr/share/doc && rm -Rf /usr/share/man \
+    && apt-get clean
+RUN sed -i 's/^\($ModLoad imklog\)/#\1/' /etc/rsyslog.conf
+
+# Install Ansible via Pip.
+RUN pip install $pip_packages
