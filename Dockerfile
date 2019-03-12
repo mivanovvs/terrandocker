@@ -7,11 +7,12 @@ RUN apk --update add sudo \
     \
     \
     && apk --update add python3 py3-pip openssl ca-certificates \
-    && apk --update add --virtual build-dependencies python3-dev py-netaddr libffi-dev openssl-dev build-base \
+    && apk --update add --virtual build-dependencies python3-dev py3-netaddr libffi-dev openssl-dev build-base \
     && pip3 install --upgrade pip cffi  \
     \
     \
     && pip3 install ansible==2.7.5 netaddr pbr>=1.6 jinja2>=2.9.6 hvac \
+    && pip3 install netaddr  \
     \
     \
     && apk --update add wget unzip \
