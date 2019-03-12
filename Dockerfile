@@ -8,6 +8,8 @@ ENV pip_packages "ansible==2.7.5 netaddr jinja2>=2.9.6 pbr>=1.6 hvac cryptograph
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
        apt-utils \
+       unzip \
+       wget \
        python-setuptools \
        python-pip \
        software-properties-common \
@@ -17,7 +19,7 @@ RUN apt-get update \
     && apt-get clean \
     && export VER="0.11.11" && wget https://releases.hashicorp.com/terraform/${VER}/terraform_${VER}_linux_amd64.zip \
     && unzip terraform_${VER}_linux_amd64.zip \
-    && mv terraform /usr/local/bin/ 
+    && mv terraform /usr/local/bin/
 
 # Install Ansible via Pip.
 RUN pip install $pip_packages
