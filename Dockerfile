@@ -11,7 +11,7 @@ RUN apk --update add sudo \
     && pip3 install --upgrade pip cffi  \
     \
     \
-    && pip3 install ansible==2.7.5 \
+    && pip3 install ansible==2.7.5 netaddr pbr>=1.6 jinja2>=2.9.6 hvac \
     \
     \
     && apk --update add wget unzip \
