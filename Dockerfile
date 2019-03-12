@@ -14,7 +14,10 @@ RUN apt-get update \
        sudo \
     && rm -Rf /var/lib/apt/lists/* \
     && rm -Rf /usr/share/doc && rm -Rf /usr/share/man \
-    && apt-get clean
+    && apt-get clean \
+    && export VER="0.11.11" && wget https://releases.hashicorp.com/terraform/${VER}/terraform_${VER}_linux_amd64.zip \
+    && unzip terraform_${VER}_linux_amd64.zip \
+    && mv terraform /usr/local/bin/ 
 
 # Install Ansible via Pip.
 RUN pip install $pip_packages
