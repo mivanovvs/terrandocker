@@ -6,7 +6,7 @@ MAINTAINER Mike Ivanov mivanov@edgegravity.ericsson.com
 RUN apk --update add sudo \
     \
     \
-    && apk --update add python3 py3-pip openssl ca-certificates \
+    && apk --update add python3 py3-pip openssl py3-ipaddr ca-certificates \
     && apk --update add --virtual build-dependencies python3-dev py3-netaddr libffi-dev openssl-dev build-base \
     && pip3 install --upgrade pip cffi  \
     \
