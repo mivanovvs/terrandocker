@@ -3,8 +3,12 @@ FROM ubuntu:16.04
 MAINTAINER Mike Ivanov mivanov@edgegravity.ericsson.com
 
 ENV pip_packages "ansible==2.7.5 netaddr jinja2>=2.9.6 pbr>=1.6 hvac cryptography==2.4.2"
+ENV KUBECTL_URL=https://storage.googleapis.com/kubernetes-release/release/stable.txt
+ENV HELM_VERSION v2.4.0
+ENV HELM_FILENAME helm-${HELM_VERSION}-linux-amd64.tar.gz
+ENV HELM_URL https://storage.googleapis.com/kubernetes-helm/${HELM_FILENAME}
 
-# Install dependencies
+# Install dependencies and Terraform
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
        apt-utils \
@@ -28,10 +32,6 @@ RUN pip install $pip_packages
 
 # Install Helm
 
-ENV HELM_VERSION v2.4.0
-ENV HELM_FILENAME helm-${HELM_VERSION}-linux-amd64.tar.gz
-ENV HELM_URL https://storage.googleapis.com/kubernetes-helm/${HELM_FILENAME}
-
 RUN echo $HELM_URL
 
 RUN curl -o /tmp/$HELM_FILENAME ${HELM_URL} \
@@ -41,8 +41,6 @@ RUN curl -o /tmp/$HELM_FILENAME ${HELM_URL} \
 
 # Install Kubectl
 
-ENV KUBECTL_URL=https://storage.googleapis.com/kubernetes-release/release/stable.txt
-
 RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s ${KUBECTL_URL})/bin/linux/amd64/kubectl \
     && chmod +x ./kubectl \
-    && mv ./kubectl /usr/local/bin 
+    && mv ./kubectl /usr/local/bin
