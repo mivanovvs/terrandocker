@@ -15,6 +15,7 @@ RUN apt-get update \
        python-pip \
        software-properties-common \
        sudo \
+    && sudo snap install kubectl --classic \   
     && rm -Rf /var/lib/apt/lists/* \
     && rm -Rf /usr/share/doc && rm -Rf /usr/share/man \
     && apt-get clean \
