@@ -14,8 +14,10 @@ RUN apt-get update \
        python-setuptools \
        python-pip \
        software-properties-common \
+       snap \
        sudo \
-    && sudo snap install kubectl --classic \   
+    && sudo snap install kubectl --classic \
+    && sudo snap install helm --classic \
     && rm -Rf /var/lib/apt/lists/* \
     && rm -Rf /usr/share/doc && rm -Rf /usr/share/man \
     && apt-get clean \
